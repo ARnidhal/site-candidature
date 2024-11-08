@@ -1,0 +1,342 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Contact Us - TesteController{% endblock %}
+
+{% block body %}
+<style>
+    /* Global Reset */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7f6;
+    }
+
+    /* Form Container */
+    .form-container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 60px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .form-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+        position: relative;
+    }
+
+    .form-container h2:after {
+        content: '';
+        width: 50px;
+        height: 4px;
+        background-color: #28a745;
+        display: block;
+        margin: 10px auto 0;
+    }
+
+    /* Form Fields */
+    .form-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-container input,
+    .form-container textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+    }
+
+    .form-container input:invalid {
+        border-color: #dc3545;
+    }
+
+    .form-container input:valid {
+        border-color: #28a745;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container button:hover {
+        background-color: #218838;
+        box-shadow: 0 5px 15px rgba(33, 136, 56, 0.2);
+    }
+
+    .form-container button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Error and Success Messages */
+    .message {
+        display: none;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    /* Form Transitions */
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .form-container {
+            width: 90%;
+            padding: 30px;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+        }
+    }
+    .custom-file {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.custom-file-input {
+    width: 100%;
+    height: 45px;
+    padding: 10px 15px;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-file-label {
+    display: inline-block;
+    width: calc(100% ); /* Leave space for the button */
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #555;
+    line-height: 24px;
+    cursor: pointer;
+    font-size: 16px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-file-label:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-file-input:focus + .custom-file-label {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+}
+
+.custom-file-input:invalid + .custom-file-label {
+    border-color: #dc3545;
+}
+
+.custom-file-input:valid + .custom-file-label {
+    border-color: #28a745;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group .browse-btn {
+    width: 110px;
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.input-group .browse-btn:hover {
+    background-color: #218838;
+}
+
+.input-group .browse-btn:active {
+    background-color: #1e7e34;
+}
+
+
+</style>
+
+<!-- Candidature Form Section -->
+<div class="form-container fade-in">
+    {% if app.session.flashBag.has('success') %}
+        <div class="message success">
+            {{ app.session.flashBag.get('success')[0] }}
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('error') %}
+        <div class="message error">
+            {{ app.session.flashBag.get('error')[0] }}
+        </div>
+    {% endif %}
+    <h2>{{ f.vars.value.id ? 'Modifier la Candidature' : 'Soumettre une Candidature' }}</h2>
+    {{ form_start(f, { attr: { novalidate: 'novalidate' } }) }}
+        <label for="cin">CIN</label>
+        {{ form_widget(f.cin, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.cin, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="nomprenom">Nom et Prénom</label>
+        {{ form_widget(f.nomprenom, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.nomprenom, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="dateNaissance">Date de Naissance</label>
+        {{ form_widget(f.dateNaissance, {'attr': {'class': 'form-control', 'id': 'dateNaissancePicker'}}) }}
+        {{ form_errors(f.dateNaissance, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="adresse">Adresse</label>
+        {{ form_widget(f.adresse, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.adresse, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="anneMaitrise">Année de Maitrise</label>
+        {{ form_widget(f.anneMaitrise, {'attr': {'class': 'form-control', 'id': 'anneMaitrisePicker'}}) }}
+        {{ form_errors(f.anneMaitrise, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="moyenne">Moyenne de Dernière Année</label>
+        {{ form_widget(f.moyenne, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.moyenne, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="nbranneexper">Nombre d'Années d'Expérience</label>
+        {{ form_widget(f.nbranneexper, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.nbranneexper, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="diplome">Diplôme Universitaire</label>
+        {{ form_widget(f.diplome, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.diplome, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="specialite">Spécialité</label>
+        {{ form_widget(f.specialite, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.specialite, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="universite">Université</label>
+        {{ form_widget(f.universite, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.universite, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="email">Adresse Email</label>
+        {{ form_widget(f.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.email, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="numtel">Numéro de Téléphone</label>
+        {{ form_widget(f.numtel, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(f.numtel, {'attr': {'class': 'form-danger'}}) }}
+        
+        <label for="fichier" class="file-label">Télécharger Fichier</label>
+        <div class="input-group custom-file">
+            {{ form_widget(f.fichier, {'attr': {'class': 'custom-file-input', 'id': 'fichier'}}) }}
+            <label class="custom-file-label" for="fichier">Votre fichier</label>
+            {{ form_errors(f.fichier) }}
+        </div>
+        
+        {{ form_widget(f.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+        <div class="message success">Votre candidature a été envoyée avec succès!</div>
+        <div class="message error">Une erreur est survenue. Veuillez réessayer.</div>
+    {{ form_end(f) }}
+</div>
+
+<div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
+    <div class="rounded">
+        <iframe class="rounded w-100" 
+        style="height: 400px;"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70424.39021671255!2d10.15013528436605!3d36.812705500935614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd34966a68e425%3A0xdf8b95b8b0438142!2sCentre%20National%20de%20l%E2%80%99Informatique%20pour%20l%E2%80%99Enfant!5e0!3m2!1sfr!2stn!4v1723389615788!5m2!1sfr!2stn" 
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#dateNaissancePicker", {
+            dateFormat: "Y-m-d", 
+        });
+
+        flatpickr("#anneMaitrisePicker", {
+            dateFormat: "Y-m-d",
+        });
+
+        document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'Choisissez un fichier';
+            e.target.nextElementSibling.innerText = fileName;
+        });
+    });
+</script>
+
+{% endblock %}

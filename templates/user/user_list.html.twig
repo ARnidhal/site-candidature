@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UTILISATEURS{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1 class="title-hover">UTILISATEURS</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                <li class="breadcrumb-item">Tableaux</li>
+                <li class="breadcrumb-item active">UTILISATEURS</li>
+            </ol>
+        </nav>
+    </div><!-- Fin de l'en-tête de page -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card shadow-sm p-4 mb-4 rounded">
+                    <h5 class="card-title">TABLEAU DES UTILISATEURS</h5>
+                    <div class="appoinment-wrap mt-4">
+                        {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {{ app.session.flashBag.get('success')[0] }}
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Tableau avec lignes alternées -->
+                        <div class="table-responsive">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr class="hover-card">
+                                        <td class="hover-column">{{ user.id }}</td>
+                                        <td class="hover-column">{{ user.name }}</td>
+                                        <td class="hover-column">{{ user.email }}</td>
+                                        <td class="hover-column role-cell">UTILISATEUR</td>
+                                        <td>
+                                            <div style="display: flex; gap: 10px;">
+                                                <a class="btn btn-danger" href="{{ path('delete_user', {'id': user.id}) }}">
+                                                    <i class="fa-solid fa-trash animate-icon"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Fin du tableau avec lignes alternées -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- Fin de #main -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+
+<style>
+    /* Styles similaires à ceux de la page des candidats */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #f4f7fa, #e0e0e0);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        overflow-y: auto;
+    }
+
+    .pagetitle {
+        margin-bottom: 20px;
+    }
+
+    .title-hover {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+        transition: transform 0.3s;
+    }
+
+    .title-hover:hover {
+        transform: scale(1.05);
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        background-color: #4a90e2;
+        color: white;
+        padding: 12px;
+        transition: background-color 0.3s; /* Animation pour l'en-tête */
+    }
+
+    .table thead th:hover {
+        background-color: #357ab8; /* Couleur plus sombre sur hover */
+    }
+
+    .table tbody tr {
+        transition: background-color 0.3s, transform 0.3s; /* Animation sur les lignes */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e1e1e1; /* Couleur de fond sur hover */
+        transform: scale(1.01); /* Légère augmentation sur hover */
+    }
+
+    .table tbody tr:hover .hover-column {
+        background-color: #d9e9ff; /* Couleur de fond pour les cellules de la ligne sur hover */
+    }
+
+    .btn {
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Animation sur les boutons */
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Rouge */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Bleu */
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px) scale(1.05); /* Légère élévation au survol */
+    }
+
+    .animate-icon {
+        transition: transform 0.3s; /* Animation pour les icônes */
+    }
+
+    .animate-icon:hover {
+        transform: rotate(10deg) scale(1.1); /* Rotation et zoom sur hover */
+    }
+
+    /* Barre de défilement personnalisée */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #4a90e2; /* Couleur de la barre de défilement */
+        border-radius: 10px;
+    }
+
+    /* Custom styles for UTILISATEUR */
+    .role-cell {
+        color: green !important; /* Important to override other styles */
+        font-weight: bold; /* Bold text */
+    }
+
+</style>
+{% endblock %}

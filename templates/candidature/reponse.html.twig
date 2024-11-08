@@ -1,0 +1,91 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Réponse à Votre Candidature{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="letter-container p-5 border rounded shadow-lg">
+                    <div class="letter-header mb-4 text-center">
+                        <img src="{{ asset('assets2/images/logo3.png') }}" alt="Company Logo" class="img-fluid mb-3" style="max-height: 100px;">
+                        <h1 class="display-4">Lettre de Réponse</h1>
+                    </div>
+
+                    <div class="letter-body">
+                        <p>Date : {{ "now"|date("d F Y") }}</p>
+                        <p>Chèr(e) <strong>{{ candidature.nomprenom }}</strong>,</p>
+
+                        {% if candidature.status == 'accepted' %}
+                            <p>
+                                Nous avons le plaisir de vous informer que votre candidature a été <span style="color: #28a745; font-weight: bold;">acceptée</span>.<br>
+                                Vous serez contacté(e) sous peu pour les prochaines étapes.<br><br>
+                                Nous vous remercions pour votre patience et votre confiance.<br><br>
+                                Cordialement,<br>
+                                <strong>L'équipe de recrutement CNPIE</strong>
+                            </p>
+                        {% elseif candidature.status == 'rejected' %}
+                            <p>
+                                Nous regrettons de vous informer que votre candidature n'a pas été <span style="color: #dc3545; font-weight: bold;">retenue</span>.<br>
+                                Nous vous remercions sincèrement pour l'intérêt que vous avez porté à notre organisation.<br><br>
+                                Nous vous souhaitons plein succès dans vos futures démarches.<br><br>
+                                Cordialement,<br>
+                                <strong>L'équipe de recrutement CNPIE</strong>
+                            </p>
+                        {% else %}
+                            <p>
+                                Votre candidature est actuellement en cours de traitement.<br>
+                                Nous vous informerons dès que possible.<br><br>
+                                Merci pour votre patience.<br><br>
+                                Cordialement,<br>
+                                <strong>L'équipe de recrutement CNPIE</strong>
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="letter-footer mt-4 text-center">
+                        <hr class="my-4">
+                        <p class="mb-0">
+                            <small>
+                                <strong>Adresse de l'entreprise :</strong><br>
+                                Ave Mohamed Ali Akid, Tunis 1003<br>
+                                Tél : 71 770 667<br>
+                                Email :contact@cnipe.com
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .letter-container {
+            border: 1px solid #e0e0e0;
+            border-radius: 0.75rem;
+            background-color: #fafafa;
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        .letter-header img {
+            max-width: 150px;
+        }
+        .letter-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .letter-body p {
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+        .letter-footer {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1rem;
+            color: #555;
+        }
+        .letter-footer small {
+            font-size: 0.875rem;
+        }
+    </style>
+{% endblock %}

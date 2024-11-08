@@ -1,0 +1,219 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Contact Us - TesteController{% endblock %}
+
+{% block body %}
+<style>
+    /* Global Reset */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7f6;
+    }
+
+    /* Form Container */
+    .form-container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 60px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .form-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+        position: relative;
+    }
+
+    .form-container h2:after {
+        content: '';
+        width: 50px;
+        height: 4px;
+        background-color: #28a745;
+        display: block;
+        margin: 10px auto 0;
+    }
+
+    /* Form Fields */
+    .form-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-container input,
+    .form-container textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+    }
+
+    .form-container input:invalid {
+        border-color: #dc3545;
+    }
+
+    .form-container input:valid {
+        border-color: #28a745;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container button:hover {
+        background-color: #218838;
+        box-shadow: 0 5px 15px rgba(33, 136, 56, 0.2);
+    }
+
+    .form-container button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Error and Success Messages */
+    .message {
+        display: none;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    /* Form Transitions */
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .form-container {
+            width: 90%;
+            padding: 30px;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<!-- Contact Form Section -->
+<div class="form-container fade-in">
+    <h2>CANDIDATURE</h2>
+    <form action="/submit_form" method="POST" id="contactForm" novalidate>
+        <label for="name">CIN</label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE CIN" required pattern="\d+">
+
+        <label for="name">NOM PRENOM</label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE NON PRENOM" required pattern="^[a-zA-Z\s]+$">
+        <label for="email"> Address</label>
+        <input type="email" id="email" name="email" placeholder="VOTRE ADRESSE" required>
+        <label for="name">MOYENNE DE DERNIERE ANNE</label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE MOYENNE" required pattern="\d+">
+        <label for="name">NOMBRE D'ANNE D'EXPERIENCES </label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE EXPERIENCES" required pattern="\d+">
+        <label for="name">DIPMLOME UNIVERSITAIRE</label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE DIPLOME " required pattern="^[a-zA-Z\s]+$">
+        <label for="name">SPECIALITE</label>
+        <input type="text" id="name" name="name" placeholder=" VOTRE SPECIALITE" required pattern="^[a-zA-Z\s]+$">
+        <label for="email">ADREESE MAIL</label>
+        <input type="email" id="email" name="email" placeholder="VOTRE EMAIL" required>
+
+
+        <button type="submit" id="submitBtn">Submit</button>
+
+        <div class="message success">Your message has been sent successfully!</div>
+        <div class="message error">There was an error sending your message. Please try again.</div>
+    </form>
+</div>
+</div>
+<div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
+    <div class="rounded">
+        <iframe class="rounded w-100" 
+        style="height: 400px;"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70424.39021671255!2d10.15013528436605!3d36.812705500935614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd34966a68e425%3A0xdf8b95b8b0438142!2sCentre%20National%20de%20l%E2%80%99Informatique%20pour%20l%E2%80%99Enfant!5e0!3m2!1sfr!2stn!4v1723389615788!5m2!1sfr!2stn" 
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<script>
+    // JavaScript for form validation and messages
+    const form = document.getElementById('contactForm');
+    const successMessage = document.querySelector('.message.success');
+    const errorMessage = document.querySelector('.message.error');
+    const submitButton = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Simulate form submission
+        setTimeout(() => {
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }, 500);
+    });
+
+    form.addEventListener('input', function () {
+        submitButton.disabled = !form.checkValidity();
+    });
+</script>
+
+{% endblock %}

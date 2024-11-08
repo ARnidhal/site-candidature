@@ -1,0 +1,176 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Bienvenue sur le Portail de Candidature{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="hero-background"></div>
+    </section>
+
+    <!-- Welcome Text Section -->
+    <section id="welcome-text" class="text-center py-5">
+        <div class="container">
+            <h1 class="hero-title">Gérez Votre Candidature Avec Élégance</h1>
+            <p class="hero-subtitle">Bienvenue sur le Portail de Candidature CNIPE. Soumettez votre demande et suivez votre statut facilement.</p>
+            <a href="{{ path('addcandidature') }}" class="btn btn-primary btn-cta">Commencer</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Nos Caractéristiques</h2>
+            <div class="row text-center">
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-file-earmark-text icon"></i>
+                        <h3>Application Facile</h3>
+                        <p>Soumettez votre candidature en ligne en quelques clics.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-check-circle icon"></i>
+                        <h3>Suivi de Statut</h3>
+                        <p>Vérifiez la progression et le statut de votre demande à tout moment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-box">
+                        <i class="bi bi-person-fill icon"></i>
+                        <h3>Support Personnalisé</h3>
+                        <p>Notre équipe est là pour vous aider avec toutes vos questions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+</main>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #e9ecef;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    #hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+    }
+
+    .hero-background {
+        background: url('/assets/img/backfr.png') no-repeat center center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    /* Welcome Text Section */
+    #welcome-text {
+        background-color: white;
+        padding: 60px 0;
+        color: #343a40;
+    }
+
+    .hero-title {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .btn-cta {
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #5cb85c;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-cta:hover {
+        background-color: #4cae4c;
+        transform: scale(1.05);
+    }
+
+    /* Features Section */
+    #features {
+        background-color: #fff;
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #343a40;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .feature-box {
+        padding: 20px;
+        border-radius: 12px;
+        background-color: #f7f7f7;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-box i.icon {
+        font-size: 40px;
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+        background-color: #f8f9fa;
+        padding: 40px;
+    }
+
+    .testimonial {
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+    }
+
+    .testimonial:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+</style>
+
+{% endblock %}

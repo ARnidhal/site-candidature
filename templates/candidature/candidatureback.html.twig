@@ -1,0 +1,259 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidats{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1 class="title-hover">CANDIDATS</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active">CANDIDAT</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card shadow-sm p-4 mb-4 rounded">
+                    <a href=""><i class="ri-arrow-left-circle-fill" style="font-size: 30px;"></i></a>
+                    <h5 class="card-title">TABLEAUX DES CANDIDATS</h5>
+                    <div class="appoinment-wrap mt-4">
+                        {% if app.session.flashBag.has('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {{ app.session.flashBag.get('success')[0] }}
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Table with stripped rows -->
+                        <div class="table-responsive">
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>cin</th>
+                                        <th>Nom Prénom</th>
+                                        <th>Date Naissance</th>
+                                        <th>Adresse</th>
+                                        <th>Année de Maîtrise</th>
+                                        <th>Moyenne</th>
+                                        <th>Année d'Expérience</th>
+                                        <th>Diplôme</th>
+                                        <th>Spécialité</th>
+                                        <th>Université</th>
+                                        <th>Fichier</th>
+                                        <th>Email</th>
+                                        <th>Numéro</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in can %}
+                                    <tr class="hover-card">
+                                        <td class="hover-column">{{ a.cin }}</td>
+                                        <td class="hover-column">{{ a.nomprenom }}</td>
+                                        <td class="hover-column">{{ a.dateNaissance|date('Y-m-d') }}</td>
+                                        <td class="hover-column">{{ a.adresse }}</td>
+                                        <td class="hover-column">{{ a.annemaitrise|date('Y-m-d') }}</td>
+                                        <td class="hover-column">{{ a.moyenne }}</td>
+                                        <td class="hover-column">{{ a.nbranneexper }}</td>
+                                        <td class="hover-column">{{ a.diplome }}</td>
+                                        <td class="hover-column">{{ a.specialite }}</td>
+                                        <td class="hover-column">{{ a.universite }}</td>
+                                        <td>
+                                            <a href="{{ asset('uploads/' ~ a.fichier) }}" target="_blank">
+                                                <i class="fa-solid fa-file-pdf"></i>
+                                            </a>
+                                        </td>
+                                        <td class="hover-column">{{ a.email }}</td>
+                                        <td class="hover-column">{{ a.numtel }}</td>
+                                        <td>
+                                            <div style="display: flex; gap: 10px;">
+                                                <a class="btn btn-danger" href="{{ path('deletecand', {'id': a.id}) }}">
+                                                    <i class="fa-solid fa-trash animate-icon"></i>
+                                                </a>
+                                                <a href="{{ path('accept_candidature', {id: a.id}) }}" class="btn btn-success">
+                                                    <i class="bi bi-person-check animate-icon"></i>
+                                                </a>
+                                                <a href="{{ path('reject_candidature', {id: a.id}) }}" class="btn btn-warning">
+                                                    <i class="bi bi-person-x animate-icon"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+<script src="{{ asset('assets/js/main.js') }}"></script>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #f4f7fa, #e0e0e0);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite; /* Animated gradient background */
+        overflow-y: auto; /* Custom scrollbar */
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .pagetitle {
+        margin-bottom: 20px;
+    }
+
+    .title-hover {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+        transition: transform 0.3s; /* Transition for title hover */
+    }
+
+    .title-hover:hover {
+        transform: scale(1.05); /* Scale effect on hover */
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        background-color: #4a90e2; /* Header color */
+        color: white;
+        padding: 12px;
+        transition: background-color 0.3s; /* Transition for header hover */
+    }
+
+    .table thead th:hover {
+        background-color: #357ab8; /* Darker header color on hover */
+    }
+
+    .table td, .table th {
+        padding: 12px;
+        vertical-align: middle; /* Center align vertically */
+        position: relative; /* For glow effect */
+    }
+
+    .table tbody tr {
+        transition: transform 0.3s, box-shadow 0.3s; /* Transition for card effect */
+    }
+
+    .table tbody tr:hover {
+        background-color: #e1e1e1; /* Hover effect for row */
+        transform: translateY(-5px) scale(1); /* Lift and scale on hover */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    .table tbody tr:hover td {
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.5); /* Glowing effect on active row */
+    }
+
+    .table tbody tr .hover-column {
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition for column */
+    }
+
+    .table tbody tr:hover .hover-column {
+        background-color: #d9e9ff; /* Change color of cells in the hovered row */
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Ensure table can scroll if too wide */
+    }
+
+    .btn {
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        animation: bounce 0.3s; /* Add bounce animation on hover */
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px) scale(1.1); /* Lift effect on hover */
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Red */
+        border: none;
+    }
+
+    .btn-success {
+        background-color: #28a745; /* Green */
+        border: none;
+    }
+
+    .btn-warning {
+        background-color: #ffc107; /* Yellow */
+        border: none;
+    }
+
+    .animate-icon {
+        transition: transform 0.3s;
+    }
+
+    .animate-icon:hover {
+        transform: rotate(10deg) scale(1.1); /* Animate icons on hover */
+    }
+
+    /* Add a subtle pulse animation on the alert */
+    .alert {
+        margin-bottom: 20px; /* Space below alert */
+        border-radius: 5px; /* Rounded corners */
+        animation: pulse 2s infinite; /* Pulse effect */
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1); }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #e0e0e0; /* Track color */
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #4a90e2; /* Thumb color */
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #357ab8; /* Darker thumb color on hover */
+    }
+
+</style>
+{% endblock %}

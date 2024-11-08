@@ -1,0 +1,194 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Détails de la Candidature{% endblock %}
+
+{% block body %}
+<style>
+    /* Background Gradient */
+    body {
+        background: linear-gradient(to right, #f7f7f7, #e0e0e0);
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Details Container */
+    .details-container {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        max-width: 900px;
+        margin: 50px auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .details-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(255, 255, 255, 0));
+        transform: rotate(15deg);
+        transform-origin: top right;
+        pointer-events: none;
+    }
+
+    .details-container h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #333;
+        text-align: center;
+        background: linear-gradient(45deg, #0e6c8b, #376c98);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding-bottom: 12px;
+        border-bottom: 4px solid #0e6c8b;
+    }
+
+    .details-container .detail {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        border-left: 8px solid #0e6c8b;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .details-container .detail:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .details-container .detail label {
+        font-weight: 600;
+        color: #444;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    .details-container .detail p {
+        margin: 0;
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .btn-edit {
+        display: block;
+        width: 240px;
+        margin: 30px auto;
+        padding: 15px;
+        background: #28a745;
+        color: #fff;
+        text-align: center;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 18px;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-edit:hover {
+        background: #0e6c8b;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(249, 249, 249, 0.2);
+    }
+
+    .btn-edit:active {
+        background: #1e7e34;
+        transform: translateY(1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-edit:focus {
+        outline: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .details-container {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .details-container h2 {
+            font-size: 30px;
+        }
+    }
+</style>
+
+<div class="details-container">
+    <h2>Détails de la Candidature</h2>
+
+    <div class="detail">
+        <label>CIN:</label>
+        <p>{{ candidature.cin }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Nom et Prénom:</label>
+        <p>{{ candidature.nomprenom }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Date de Naissance:</label>
+        <p>{{ candidature.dateNaissance|date('d-m-Y') }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Adresse:</label>
+        <p>{{ candidature.adresse }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Année de Maitrise:</label>
+        <p>{{ candidature.anneMaitrise|date('Y') }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Moyenne de Dernière Année:</label>
+        <p>{{ candidature.moyenne }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Nombre d'Années d'Expérience:</label>
+        <p>{{ candidature.nbranneexper }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Diplôme Universitaire:</label>
+        <p>{{ candidature.diplome }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Spécialité:</label>
+        <p>{{ candidature.specialite }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Université:</label>
+        <p>{{ candidature.universite }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Adresse Email:</label>
+        <p>{{ candidature.email }}</p>
+    </div>
+    
+    <div class="detail">
+        <label>Numéro de Téléphone:</label>
+        <p>{{ candidature.numtel }}</p>
+    </div>
+    <div class="detail">
+        <label>Fichier:</label>
+        <a href="{{ asset('uploads/' ~ candidature.fichier) }}" target="_blank">
+            <i class="fa-solid fa-file-pdf"></i>
+            {{ candidature.fichier }}</a>
+    </div>
+    <a href="{{ path('editcandidature', { 'id': candidature.id }) }}" class="btn-edit">Modifier</a>
+</div>
+{% endblock %}

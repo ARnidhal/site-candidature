@@ -1,0 +1,1058 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 12, 2024 at 03:23 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `sympi5`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `icon` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `nom`, `description`, `icon`) VALUES
+(1, 'Women Health', 'This includes everything related to the female reproductive system, such as menstruation, fertility, contraception, pregnancy, childbirth, and menopause', 'fa-solid fa-venus fa-bounce'),
+(2, 'Primary Care', 'This includes basic healthcare services provided by healthcare professionals such as family doctors', 'fa-solid fa-hand-holding-medical fa-bounce'),
+(3, 'SPECIALTY CARE', 'These services are provided by healthcare professionals specialized in a particular field,', 'fa-solid fa-heart-circle-bolt fa-bounce'),
+(4, 'Diagnostic', 'diagnostic description', 'fa-solid fa-stethoscope fa-bounce'),
+(2333342, 'Surgical Care', 'Surgical Care description', 'fa-solid fa-hospital fa-bounce'),
+(2333343, 'Public Health', 'Public Health description', 'fa-solid fa-syringe fa-bounce'),
+(2333344, 'Personal Care', 'Personal Care description', 'fa-solid fa-user-nurse fa-bounce');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_event`
+--
+
+CREATE TABLE `category_event` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_event`
+--
+
+INSERT INTO `category_event` (`id`, `name`, `description`) VALUES
+(27, 'default', 'aaaaaaaa'),
+(29, 'volunteering', 'hhhhhhhhh'),
+(30, 'seminaire', 'aaaaaa'),
+(31, 'congrès', 'aaaaaaa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `id_post_id` int(11) DEFAULT NULL,
+  `id_comment` int(11) DEFAULT NULL,
+  `contenu_comment` varchar(1000) NOT NULL,
+  `likes_comment` int(11) DEFAULT NULL,
+  `dislikes_comment` int(11) DEFAULT NULL,
+  `name_comment` varchar(255) NOT NULL,
+  `mail_comment` varchar(255) NOT NULL,
+  `datecreation_comment` date DEFAULT NULL,
+  `id_creatorcom` int(11) DEFAULT NULL,
+  `report_count` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `id_post_id`, `id_comment`, `contenu_comment`, `likes_comment`, `dislikes_comment`, `name_comment`, `mail_comment`, `datecreation_comment`, `id_creatorcom`, `report_count`) VALUES
+(42, 116, 1, 'this is very helpfullll!!!', NULL, NULL, 'name', 'mail', '2024-04-23', 777, 0),
+(50, 127, 1, 'this is a comment under this post', NULL, NULL, 'name', 'mail', '2024-04-24', 1, 0),
+(51, 127, 1, 'this is a comment under this post with id logged in', NULL, NULL, 'name', 'mail', '2024-04-24', 15, 0),
+(57, 127, 1, 'nice post !!!!', NULL, NULL, 'name', 'mail', '2024-05-02', 15, 0),
+(60, 127, 1, 'this answered my question\'s thank you!!', NULL, NULL, 'name', 'mail', '2024-05-02', 15, 0),
+(73, 115, 1, 'reported for this post!!!!', NULL, NULL, 'name', 'mail', '2024-05-15', 1, 0),
+(74, 116, 1, 'reported post 2!!!!', NULL, NULL, 'name', 'mail', '2024-05-15', 1, 0),
+(77, 139, 1, 'this a nice and helpfull post !!!', NULL, NULL, 'name', 'mail', '2024-05-28', 47, 0),
+(78, 117, 1, 'this a nice and helpfull post!!!', NULL, NULL, 'name', 'mail', '2024-05-28', 47, 0),
+(79, 140, 515285, 'this is a nice post !!!!', 0, 0, 'rayenn', 'rayy@gmail.com', '2024-05-28', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctrine_migration_versions`
+--
+
+CREATE TABLE `doctrine_migration_versions` (
+  `version` varchar(191) NOT NULL,
+  `executed_at` datetime DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20240210090332', '2024-03-02 11:58:48', 34),
+('DoctrineMigrations\\Version20240210182819', '2024-03-02 11:58:48', 7),
+('DoctrineMigrations\\Version20240210232442', '2024-03-02 11:58:48', 80),
+('DoctrineMigrations\\Version20240302110617', '2024-03-02 12:06:34', 125),
+('DoctrineMigrations\\Version20240302134418', '2024-03-02 14:44:26', 95),
+('DoctrineMigrations\\Version20240302165413', '2024-03-02 17:54:22', 79),
+('DoctrineMigrations\\Version20240302174945', '2024-03-02 18:49:51', 180),
+('DoctrineMigrations\\Version20240302190240', '2024-03-02 20:02:53', 299),
+('DoctrineMigrations\\Version20240303192123', '2024-03-03 20:21:31', 22),
+('DoctrineMigrations\\Version20240304073309', '2024-03-04 08:33:18', 95),
+('DoctrineMigrations\\Version20240304231054', '2024-03-05 00:12:08', 145),
+('DoctrineMigrations\\Version20240305051019', '2024-03-05 06:10:27', 97);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `evenement`
+--
+
+CREATE TABLE `evenement` (
+  `id` int(11) NOT NULL,
+  `image_evenement` varchar(255) NOT NULL,
+  `type_evenement` varchar(255) NOT NULL,
+  `nom_evenement` varchar(255) NOT NULL,
+  `lieu_evenement` varchar(255) NOT NULL,
+  `date_debut` datetime NOT NULL,
+  `date_fin` datetime NOT NULL,
+  `nb_participants` int(11) NOT NULL,
+  `sponsor_id` int(11) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT 27
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `evenement`
+--
+
+INSERT INTO `evenement` (`id`, `image_evenement`, `type_evenement`, `nom_evenement`, `lieu_evenement`, `date_debut`, `date_fin`, `nb_participants`, `sponsor_id`, `color`, `category_id`) VALUES
+(69, 'e3a4df8a4c67df48886e6d0e4bb07240.png', 'donation', 'Blood donation', 'Tunis', '2024-05-13 15:52:00', '2024-05-13 15:52:00', 15, 1, '#f90606', 29),
+(71, '0822b4b416113c672ba6df6d6a3c08c9.jpg', 'seminaire', 'Seminaire', 'Sfax', '2024-06-13 16:03:00', '2024-06-14 16:03:00', 98, 2, '#f05705', 27),
+(73, 'f00a3c66346284829d1a95acfed269fc.jpg', 'Formation', 'Formation', 'Tunis', '2024-05-09 00:00:00', '2024-05-12 00:00:00', 27, NULL, '#0fe6f5', 27),
+(75, '3b03f6381c4a23b4e76e93baef697896.jpg', 'volunteering', 'October Rose', 'sousse', '2024-10-16 12:08:00', '2024-10-18 12:08:00', 17, 1, '#f61e9c', 27),
+(76, 'dbfb5347858f89add250e72b3a62c8df.jpg', 'congrès', 'Congrès', 'Bizerte', '2024-05-16 00:00:00', '2024-05-19 00:00:00', 22, NULL, '#1714d7', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes_post`
+--
+
+CREATE TABLE `likes_post` (
+  `id_like` int(11) NOT NULL,
+  `id_post` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `likes_post`
+--
+
+INSERT INTO `likes_post` (`id_like`, `id_post`, `id_user`) VALUES
+(45, 116, 777),
+(51, 127, 15),
+(54, 116, 15),
+(70, 139, 47),
+(71, 117, 47),
+(72, 115, 47);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medecin`
+--
+
+CREATE TABLE `medecin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(180) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `token` int(11) NOT NULL,
+  `photo` varchar(254) DEFAULT NULL,
+  `code` int(11) DEFAULT NULL,
+  `role` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`role`)),
+  `specialite` varchar(30) DEFAULT NULL,
+  `adress` varchar(30) DEFAULT NULL,
+  `fullname` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `medecin`
+--
+
+INSERT INTO `medecin` (`id`, `username`, `email`, `phone`, `password`, `token`, `photo`, `code`, `role`, `specialite`, `adress`, `fullname`) VALUES
+(1, 'rayennn', 'rayenyaya123@gmail.com', '97407878', '$2y$13$YCM8kBxxEI4NeeOy0vbSAumsO35hnPS.gjvC7HPe/V3Ayy.IMA8Ue', 1, '65ce7b60cd0de.jpg', NULL, '[\"admin\"]', NULL, NULL, 'toujani'),
+(17, 'rayennn', 'rayenyayaadmin@gmail.com', '97407878', '$2y$13$T0NKKqIhYwVXJlxMkmuF5ePkbee9bFtroKH9Eflgx2nGHVPYQ3r2i', 1, '65ce7b60cd0de.jpg', NULL, '[\"admin\"]', NULL, NULL, 'toujani'),
+(21, 'Farah Jebali', 'ghazouani4474@gmail.com', '12345678', '$2a$10$ym0tVRm1jiSi2UqSAcuoiebb8IesidhWm7LxLpo0pgowmJ.lLbWxC', 1, '65f2e0815c0df.jpg', NULL, '[\"medecin\"]', 'Genecology', 'Ariana', 'rayen toj'),
+(22, 'Amina Ghazouani', 'ghazouani44894@gmail.com', '12345678', '$2a$10$ym0tVRm1jiSi2UqSAcuoiebb8IesidhWm7LxLpo0pgowmJ.lLbWxC', 1, '65f2df696067e.jpg', NULL, '[\"medecin\"]', 'Dentist', 'Gabes', 'ahmed'),
+(23, 'Rayen Toujani', 'ghazouani44594@gmail.com', '12345678', '$2a$10$ym0tVRm1jiSi2UqSAcuoiebb8IesidhWm7LxLpo0pgowmJ.lLbWxC', 1, '65f2ded578d4e.jpg', NULL, '[\"medecin\"]', 'Generalist', 'Gabes', 'wejden'),
+(25, 'selim ghazpouani', 'hamza.chenenaoui@esprit.tn', '23538853', '$2a$10$UUMCJsYHGY7AzVA9Ccch5u9kwwZz3F8dfLsAAMFIxij1zMTXi4mjO', 1, '65ce7b60cd0de.jpg', NULL, '[\"user\"]', NULL, NULL, 'med selim ghazouani'),
+(28, 'dgsdgsd', 'sdgsg@gmail.com', '12345678', '$2y$13$d/aQ5fH0uLpRUp7FTncKTOJwH5HOU9j/Nnq2lw3WeBI2rutDd5id6', 1, '65ce7b60cd0de.jpg', NULL, '[\"user\"]', '0', '0', 'sdgsdgsdgs'),
+(29, 'sloumaa', 'slouma123@gmail.com', '12345678', '$2y$13$Uw.aUFhjBLMTn6jdm9HNmuLQF8fQ/2AUfvtOFZLYGGkbO07fEGrzi', 1, '65ce7b60cd0de.jpg', NULL, '[\"user\"]', NULL, NULL, 'fvdfvddbd'),
+(31, 'Olfa Mejri', 'ssdvsvdsv@gmail.com', '12345678', '$2a$10$KxhnhbsFV8hKM1ZXDURTIuNKPVknsES2Sbpsgpxs1WD7xQeFuT.r.', 1, '65ce777546070.jpg', NULL, '[\"medecin\"]', 'Gastroenterology', 'ariana', 'Selim Ghazouani'),
+(36, 'jhguguygvy', 'ecezxzxz@gmail.com', '12345678', '$2y$13$SNumsT0TU3OcuU5Oqowb1OatXwljygvGLbVMIxMBmC1VJEer9.tl6', 1, '6642919ea0209.jpg', NULL, '[\"user\"]', '0', '0', 'jhguhbu'),
+(37, 'Emna Chelly', 'farahjebali555@gmail.com', '12345678', '$2y$13$K2Yw5kdVEUzkCDky5WB0FuhzeCxVdJqEB7Y2lYDzdlz.fVsthlB6u', 1, '65d32b127f3be.jpg', NULL, '[\"medecin\"]', 'Ophthalmology', 'Sousse', 'farah doctor'),
+(38, 'selimadmin', 'selimadmin@gmail.com', '12345678', '$2y$13$4yCFwC.QSO4HyL7Hd5jAm.QU1Bbr2nA0ItjIxadk3pwWRdBqrgTBm', 1, '6642920ce611f.jpg', NULL, '[\"admin\"]', '0', '0', 'selim ghazouani'),
+(39, 'niadhaladmin', 'nidhaladmin@gmail.com', '12345678', '$2y$13$4dZKZLZDvGR1TCMz9YE/m.HZV2G8/lCg2cumqz3271EnmYdJMz96.', 1, '6645ecb4a736a.jpg', NULL, '[\"admin\"]', NULL, NULL, 'nidhal arfaoui'),
+(40, 'wejdenadmin', 'wejdenadmin@gmail.com', '12345678', '$2a$10$NHfNNDTKwTTazHkXASqwweaAPhC.KjTzxyv7c6kfQHIWmwgDzh/7e', 1, '65d0ba38c93ca.jpg', NULL, '[\"admin\"]', NULL, NULL, 'wejden nasfi'),
+(41, 'rayen', 'rayentoujani@gmail.com', '12345678', '$2y$13$/FtO/z2mCNc9ntFO0E.4Meg10IMUaGBpQR8AOXJToqOyi6NdHH9Ve', 1, '65ce750a653a9.jpg', NULL, '[\"user\"]', '0', '0', 'rayen toujani'),
+(42, 'selimghaz', 'bouaziza667@gmail.com', '23835581', '$2y$13$lPpfBYpIGnUA7pLgGWeCJ.VCwLGs3FZ9mMf3MoAoIqMwuwbFKKGxa', 1, '65ce777546070.jpg', NULL, '[\"user\"]', '0', '0', 'selim ghazouani'),
+(47, 'SelimUser', 'ghazouani4444@gmail.com', '23835581', '$2y$13$TTvZWWuH3TFqxNivtUd9WOMamZTD1s5X5I9lYY6m.FGOs8GfZLJAy', 1, '6654ccbb0e073.jpg', NULL, '[\"user\"]', '0', '0', 'Selim Ghazouani');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messenger_messages`
+--
+
+CREATE TABLE `messenger_messages` (
+  `id` bigint(20) NOT NULL,
+  `body` longtext NOT NULL,
+  `headers` longtext NOT NULL,
+  `queue_name` varchar(190) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `available_at` datetime NOT NULL,
+  `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messenger_messages`
+--
+
+INSERT INTO `messenger_messages` (`id`, `body`, `headers`, `queue_name`, `created_at`, `available_at`, `delivered_at`) VALUES
+(1, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:28:\\\"Symfony\\\\Component\\\\Mime\\\\Email\\\":6:{i:0;N;i:1;N;i:2;s:1136:\\\"\r\n                <div style=\\\"max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif;\\\">\r\n                    <div style=\\\"background-color:#ffd000; color: #fff; padding: 15px; text-align: center; border-radius: 10px 10px 0 0;\\\">\r\n                        <h1 style=\\\"margin: 0;\\\"> Réservation a traiter </h1>\r\n                    </div>\r\n                    <div style=\\\"padding: 20px;\\\">\r\n                        <p style=\\\"font-size: 18px; color: #333;\\\">Cher(e) <strong>arfaoui</strong>,</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">Nous sommes heureux de vous informer que votre réservation pour le service <strong>gynico</strong> est en cours.</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">N\\\'hésitez pas à nous contacter si vous avez des questions ou besoin d\\\'assistance supplémentaire.</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">Cordialement,</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">L\\\'équipe Visita</p>\r\n                    </div>\r\n                </div>\\\";i:3;s:5:\\\"utf-8\\\";i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:3:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:21:\\\"ADMINVisita@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:22:\\\"rayenyaya123@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:7:\\\"subject\\\";a:1:{i:0;O:48:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:7:\\\"Subject\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:55:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\\";s:37:\\\"Confirmation de Réservation - Visita\\\";}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2024-03-02 12:15:30', '2024-03-02 12:15:30', NULL),
+(2, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:28:\\\"Symfony\\\\Component\\\\Mime\\\\Email\\\":6:{i:0;N;i:1;N;i:2;s:1136:\\\"\r\n                <div style=\\\"max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; font-family: Arial, sans-serif;\\\">\r\n                    <div style=\\\"background-color:#ffd000; color: #fff; padding: 15px; text-align: center; border-radius: 10px 10px 0 0;\\\">\r\n                        <h1 style=\\\"margin: 0;\\\"> Réservation a traiter </h1>\r\n                    </div>\r\n                    <div style=\\\"padding: 20px;\\\">\r\n                        <p style=\\\"font-size: 18px; color: #333;\\\">Cher(e) <strong>nidjhhh</strong>,</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">Nous sommes heureux de vous informer que votre réservation pour le service <strong>gynico</strong> est en cours.</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">N\\\'hésitez pas à nous contacter si vous avez des questions ou besoin d\\\'assistance supplémentaire.</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">Cordialement,</p>\r\n                        <p style=\\\"font-size: 16px; color: #555;\\\">L\\\'équipe Visita</p>\r\n                    </div>\r\n                </div>\\\";i:3;s:5:\\\"utf-8\\\";i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:3:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:21:\\\"ADMINVisita@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:22:\\\"rayenyaya123@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:7:\\\"subject\\\";a:1:{i:0;O:48:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:7:\\\"Subject\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:55:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\\";s:37:\\\"Confirmation de Réservation - Visita\\\";}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2024-03-02 12:20:14', '2024-03-02 12:20:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participant`
+--
+
+CREATE TABLE `participant` (
+  `id` int(11) NOT NULL,
+  `date_participation` datetime NOT NULL,
+  `evenement_id` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `medecin_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `participant`
+--
+
+INSERT INTO `participant` (`id`, `date_participation`, `evenement_id`, `description`, `medecin_id`) VALUES
+(128, '2024-05-07 08:42:48', 61, 'Participation description', 1),
+(129, '2024-05-07 10:37:25', 62, 'Participation description', 1),
+(130, '2024-05-11 19:10:26', 61, 'jipuipuiipuipuiiu', 1),
+(131, '2024-05-13 15:32:28', 63, 'hhhhhhhhhhhhh', 1),
+(132, '2024-05-13 15:32:54', 63, 'hhhhhhhhhh', 1),
+(135, '2024-05-13 16:11:27', 71, 'jipuipuiipuipuiiu', 1),
+(136, '2024-05-13 16:11:30', 71, 'jipuipuiipuipuiiu', 1),
+(137, '2024-05-16 12:26:23', 75, 'moi', 1),
+(140, '2024-05-16 12:27:11', 71, 'moi', 1),
+(141, '2024-05-16 12:27:21', 73, 'moi', 1),
+(142, '2024-05-16 12:27:32', 73, 'moiii', 1),
+(143, '2024-05-16 12:27:47', 75, 'moiii', 1),
+(144, '2024-05-16 12:28:02', 75, 'moi', 1),
+(145, '2024-05-16 12:28:17', 76, 'moi', 1),
+(148, '2024-05-27 23:48:54', 75, 'I want to participate', 1),
+(149, '2024-05-27 23:49:25', 75, 'Can i participate ?', 1),
+(150, '2024-05-27 23:51:01', 75, 'I want to participate', 1),
+(153, '2024-06-11 15:51:29', 73, 'coming', 1),
+(155, '2024-06-11 16:04:29', 71, 'coming', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `type_post` varchar(255) NOT NULL,
+  `title_post` varchar(1000) NOT NULL,
+  `contenu_post` varchar(8000) NOT NULL,
+  `nb_comments_post` int(11) DEFAULT NULL,
+  `validation_post` tinyint(1) DEFAULT NULL,
+  `makedate_post` date DEFAULT NULL,
+  `likes_post` int(11) DEFAULT NULL,
+  `dislikes_post` int(11) DEFAULT NULL,
+  `phonenumber` int(11) DEFAULT NULL,
+  `id_creator` int(11) DEFAULT NULL,
+  `Image_post` varchar(500) DEFAULT NULL,
+  `country` varchar(250) DEFAULT NULL,
+  `report_count` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `id_post`, `type_post`, `title_post`, `contenu_post`, `nb_comments_post`, `validation_post`, `makedate_post`, `likes_post`, `dislikes_post`, `phonenumber`, `id_creator`, `Image_post`, `country`, `report_count`) VALUES
+(115, 1, 'Medicine', 'Mental Health Awareness: Breaking the Stigma', 'Join the conversation on mental health awareness. This post aims to break the stigma around mental health issues by discussing common conditions, signs to look out for, how to support those affected, and available treatment options.', NULL, 1, '2024-04-21', 0, NULL, 23835581, 777, 'file:/C:/Users/lenovo/OneDrive/Images/icons8-akinator-game-100.png', 'FR', 5),
+(116, 1, 'Medicine', 'The Benefits of a Balanced Diet: Nutrition Tips for a Healthy Life', 'Learn about the numerous benefits of maintaining a balanced diet. This post offers tips for healthy eating, meal planning, and debunking common nutritional myths to help you make informed dietary choices.', NULL, 1, '2024-04-22', 0, NULL, 123456, 0, 'file:/C:/Users/lenovo/OneDrive/Images/icons8-akinator-game-100.png', 'TN', 2),
+(117, 792097, 'Free counselling', 'Advances in Medical Technology: How Innovation is Shaping Healthcare', 'Explore the latest advancements in medical technology and their impact on healthcare. This post highlights innovations like telemedicine, AI diagnostics, and robotic surgery, discussing their benefits and future trends.', NULL, 1, '2024-05-16', 0, NULL, 789456, 0, 'file:/C:/Users/lenovo/OneDrive/Images/icons8-akinator-game-100.png', 'GR', 1),
+(118, 870314, 'Free counselling', 'Understanding Vaccinations: Myths and Facts', 'Vaccinations are crucial for disease prevention, but misconceptions abound. This post addresses common myths and presents factual information about how vaccines work, their importance, and recommended schedules.', NULL, 1, '2024-05-16', 0, NULL, 12345678, 0, 'file:/C:/Users/rayen/Pictures/367374594_1732321707181508_7274277188950049873_n.png', 'TN', 0),
+(119, 1, 'Medicine', 'Coping with Chronic Pain: Strategies for Relief', 'Chronic pain can be debilitating, but there are ways to manage it. This post provides strategies for relief, including medical treatments, lifestyle changes, and alternative therapies to improve your quality of life.', NULL, 1, '2024-04-23', 0, NULL, 12345678, 0, 'file:/C:/Users/rayen/Pictures/367374594_1732321707181508_7274277188950049873_n.png', 'TN', 0),
+(124, 1, 'Medicine', 'Heart Health: Tips for a Strong and Healthy Heart', 'Maintaining heart health is vital. This post offers tips for a strong and healthy heart through diet, exercise, and lifestyle choices, along with information on risk factors and the importance of regular check-ups.', NULL, 1, '2024-04-23', 0, NULL, 0, 0, 'file:/C:/Users/rayen/Pictures/367374594_1732321707181508_7274277188950049873_n.png', 'TN', 0),
+(126, 1, 'Medicine', 'Sleep Hygiene: Improving Your Sleep Quality', 'Good sleep hygiene is key to overall health. This post discusses the importance of quality sleep, common sleep disorders, and provides tips for creating a sleep-friendly environment and improving your sleep habits.', NULL, 1, '2024-04-23', 0, NULL, 0, 0, 'file:/C:/Users/rayen/Pictures/367374594_1732321707181508_7274277188950049873_n.png', 'BR', 0),
+(127, 1, 'Medicine', 'Navigating the World of Allergies: Triggers and Treatments', ' Allergies can range from mild annoyances to severe reactions. This post explores common allergens, symptoms, and the latest treatment options, including medications and lifestyle changes to manage and prevent allergic reactions.', NULL, 1, '2024-04-24', 0, NULL, 12345678, 15, 'file:/C:/Users/rayen/Pictures/367374594_1732321707181508_7274277188950049873_n.png', 'TN', 1),
+(132, 1, 'Medicine', 'The Role of Exercise in Mental Health', 'Physical activity is not only good for your body but also for your mind. Discover the connection between exercise and mental health, the types of exercises that are most beneficial, and how to incorporate physical activity into your daily routine to boost your mood and well-being.', NULL, 1, '2024-05-07', 0, NULL, 97407878, 24, 'file:/C:/Users/rayen/Pictures/28%20Pics%20that%20logic%20doesn\'t%20seem%20to%20be%20able%20to%20explain_%20(1).jpg', 'TN', 1),
+(133, 282990, 'Heart', 'Understanding Autoimmune Diseases: Causes, Symptoms, and Management', 'Understanding Autoimmune Diseases: Causes, Symptoms, and Management', 0, 1, '2024-05-12', 1, 1, NULL, NULL, 'file:/C:/Users/rayen/Pictures/28%20Pics%20that%20logic%20doesn\'t%20seem%20to%20be%20able%20to%20explain_%20(1).jpg', NULL, 0),
+(134, 1, 'Equipments', 'The Importance of Hydration: How Much Water Do You Really Need rep?', 'Staying hydrated is crucial for overall health, but how much water do you really need? This post discusses the benefits of proper hydration, signs of dehydration, and tips to ensure you drink enough water throughout the day', NULL, 1, '2024-05-15', 0, NULL, 97407878, 1, 'file:/C:/Users/lenovo/OneDrive/Images/bg.jpg', 'TN', 0),
+(135, 1, 'Heart', 'Pediatric Health: Common Childhood Illnesses and How to Treat Them', 'Childhood illnesses can be concerning for any parent. This post covers common childhood illnesses, their symptoms, and effective treatment options. Learn when to seek medical advice and how to care for your child at home.', NULL, 1, '2024-05-15', 0, NULL, 97407878, 1, 'file:/C:/Users/lenovo/OneDrive/Images/Bolt%20x%20Dog!Reader-%20Lightning_%20%5BDiscontinued%5D%20%5Bold%20book%5D%20-%20Info.jpg', 'TN', 0),
+(136, 1, 'Lab test', 'The Impact of Sleep on Health: Why Quality Sleep Matters', 'Sleep is essential for physical and mental health. This post delves into the importance of quality sleep, the effects of sleep deprivation, and practical tips for improving sleep hygiene to ensure you get the rest you need.', NULL, 1, '2024-05-15', 0, NULL, 97407878, 1, 'file:/C:/Users/lenovo/OneDrive/Images/icons8-akinator-game-100.png', 'TN', 0),
+(139, 1, 'Free counselling', 'The Impact of Sleep on Health: Why Quality Sleep Matters', 'Sleep is essential for physical and mental health. This post delves into the importance of quality sleep, the effects of sleep deprivation, and practical tips for improving sleep hygiene to ensure you get the rest you need.', NULL, 1, '2024-05-28', 0, NULL, 97407878, 47, 'file:/C:/Users/lenovo/OneDrive/Images/bg.jpg', 'TN', 1),
+(140, 834100, 'Heart', 'Sleep is essential for physical and mental health. This post delves into the importance of quality sleep, the effects of sleep deprivation, and practical tips for improving sleep hygiene to ensure you get the rest you need.', 'Childhood illnesses can be concerning for any parent. This post covers common childhood illnesses, their symptoms, and effective treatment options. Learn when to seek medical advice and how to care for your child at home.', 1, 1, '2024-05-28', 1, 0, NULL, NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rapport`
+--
+
+CREATE TABLE `rapport` (
+  `id` int(11) NOT NULL,
+  `rendezvous_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rapport`
+--
+
+INSERT INTO `rapport` (`id`, `rendezvous_id`, `type`, `note`) VALUES
+(9, 18, 'Laboratory Test Results', 'testtedited'),
+(10, 14, 'Medical Certificate', 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `react`
+--
+
+CREATE TABLE `react` (
+  `iduser` int(11) DEFAULT NULL,
+  `idevent` int(11) DEFAULT NULL,
+  `reactContent` varchar(100) DEFAULT NULL,
+  `dt` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `react`
+--
+
+INSERT INTO `react` (`iduser`, `idevent`, `reactContent`, `dt`) VALUES
+(1, 55, 'interested', '2024-05-04'),
+(1, 56, 'going', '2024-05-04'),
+(1, 59, 'not interested', '2024-05-04'),
+(1, 57, 'interested', '2024-05-04'),
+(1, 61, 'going', '2024-05-07'),
+(1, 62, 'going', '2024-05-07'),
+(1, 69, 'interested', '2024-05-27'),
+(1, 73, 'not interested', '2024-05-27'),
+(1, 71, 'going', '2024-06-11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reclamation`
+--
+
+CREATE TABLE `reclamation` (
+  `id` int(11) NOT NULL,
+  `sujet` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `subdate` datetime NOT NULL,
+  `categorie` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reclamation`
+--
+
+INSERT INTO `reclamation` (`id`, `sujet`, `description`, `subdate`, `categorie`, `nom`, `email`) VALUES
+(9, 'Problème technique avec le formulaire de contact', 'Lorsque je tente d\'utiliser le formulaire de contact sur votre site médical, je rencontre un problème technique. Après avoir rempli tous les champs requis et cliqué sur le bouton \"Envoyer\", rien ne se passe. Le formulaire ne se soumet pas, et il n\'y a aucun message d\'erreur pour indiquer ce qui pourrait poser problème. J\'ai essayé plusieurs fois, mais le résultat est toujours le même.', '2024-03-05 08:58:40', 'Technique', 'selim ghazouani', ''),
+(22, 'bouaziza667@gmail.com', 'bouaziza667@gmail.combouaziza667@gmail.com', '2024-05-06 16:05:14', 'Product Quality', 'ahmed', 'bouaziza667@gmail.com'),
+(23, 'bouaziza667@gmail.com', 'bouaziza667', '2024-05-06 21:24:36', 'Technical', 'ahmed bouaziz', 'bouaziza667@gmail.com'),
+(27, 'reclzmation 22', 'hdchv hcbhsdcbhj  sgchj', '2024-05-07 10:17:15', 'Technical', 'hamza', 'hamza.chenenaoui@esprit.tn'),
+(30, 'webjava', 'webjavawebjavawebjavawebjava', '2024-05-13 10:59:21', 'Technical', 'webjava', 'ahmedbouaziz928@gmail.com'),
+(32, 'Problème de chargement de la page d\'accueil', 'Lorsque je tente d\'accéder à la page d\'accueil du site, celle-ci ne se charge pas correctement. Je rencontre un message d\'erreur indiquant une erreur de connexion à la base de données.', '2024-05-16 10:58:19', 'Technical', 'ahmed bouaziz', 'bouaziza667@gmail.com'),
+(33, 'Interface utilisateur peu intuitive', 'Je trouve que l\'interface utilisateur du site manque de convivialité. Les éléments de navigation ne sont pas clairs', '2024-05-16 10:59:34', 'Design/UI', 'ahmed bouaziz', 'bouaziza667@gmail.com'),
+(34, 'Information manquante sur la page de produit', 'En consultant la page de description d\'un produit, je remarque qu\'il manque des informations importantes telles que les spécifications techniques, les dimensions et les instructions d\'utilisation', '2024-05-16 11:01:38', 'Contenu', 'selim', 'ahmedbouaziz928@gmail.com'),
+(35, 'Vulnérabilité de sécurité potentielle', 'En naviguant sur le site, j\'ai remarqué qu\'il était possible d\'accéder à certaines pages sensibles en modifiant simplement l\'URL', '2024-05-16 11:02:43', 'Sécurité', 'ahmed bouaziz', 'ahmedbouaziz928@gmail.com'),
+(36, 'Vulnérabilité de sécurité potentielle', 'En naviguant sur le site, j\'ai remarqué qu\'il était possible d\'accéder à certaines pages sensibles en modifiant simplement l\'URL', '2024-05-16 11:02:50', 'Sécurité', 'selim', 'ahmedbouaziz928@gmail.com'),
+(37, 'Vulnérabilité de sécurité potentielle', 'En naviguant sur le site, j\'ai remarqué qu\'il était possible d\'accéder à certaines pages sensibles en modifiant simplement l\'URL', '2024-05-16 11:02:59', 'Sécurité', 'rayen', 'ahmedbouaziz928@gmail.com'),
+(38, 'Temps de réponse du support client trop long', 'J\'ai soumis une demande d\'assistance il y a plusieurs jours et je n\'ai toujours pas reçu de réponse', '2024-05-16 11:04:28', 'Communication/Support', 'ahmed bouaziz', 'ahmedbouaziz928@gmail.com'),
+(39, 'Temps de réponse du support client trop long', 'J\'ai soumis une demande d\'assistance il y a plusieurs jours et je n\'ai toujours pas reçu de réponse', '2024-05-16 11:04:36', 'Communication/Support', 'selim', 'ahmedbouaziz928@gmail.com'),
+(40, 'Temps de réponse du support client trop long', 'J\'ai soumis une demande d\'assistance il y a plusieurs jours et je n\'ai toujours pas reçu de réponse', '2024-05-16 11:04:41', 'Communication/Support', 'rayen', 'ahmedbouaziz928@gmail.com'),
+(41, 'vzlidztion', 'web jzva web java', '2024-05-16 14:31:50', 'Technique', 'hamza', 'bouaziza667@gmail.com'),
+(42, 'Contenu', 'There is a problem in contenu', '2024-05-27 22:20:10', 'Contenu', 'SelimUser', 'ghazouani4444@gmail.com'),
+(43, 'Contenu', 'There is a problem in contenu', '2024-05-27 22:20:14', 'Contenu', 'SelimUser', 'ghazouani4444@gmail.com'),
+(44, 'Design Post', 'The Design Post is glitching', '2024-05-27 23:31:22', 'Design/UI', 'SelimUser', 'ghazouani4444@gmail.com'),
+(45, 'Design Post', 'there is a problem with the Design', '2024-06-11 23:20:40', 'Technique', 'Selim Ghazouani', 'ghazouani4444@gmail.com'),
+(46, 'Design', 'I don\'t like the design', '2024-06-11 22:21:59', 'Design/UI', 'Selim User', 'ghazouani4444@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rendezvous`
+--
+
+CREATE TABLE `rendezvous` (
+  `id` int(11) NOT NULL,
+  `medecin_id` int(11) NOT NULL,
+  `rapport_id` int(11) DEFAULT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `tel` varchar(10) NOT NULL,
+  `date` date NOT NULL,
+  `note` varchar(255) NOT NULL,
+  `etat` tinyint(1) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rendezvous`
+--
+
+INSERT INTO `rendezvous` (`id`, `medecin_id`, `rapport_id`, `fullname`, `tel`, `date`, `note`, `etat`, `email`, `time`) VALUES
+(14, 21, 10, 'selim', '29304408', '2024-05-01', 'test', 1, 'test@gmail.com', '10:10:10'),
+(16, 21, 9, 'wejden', '12345678', '2024-05-05', 'test', 1, 'k@gmail.com', '10:15:00'),
+(17, 23, NULL, 'emna', '12345678', '2024-05-17', 'test', 1, 't@gmail.com', '10:15:10'),
+(18, 23, NULL, 'toj', '12345678', '2024-05-13', 'test', 1, 't@gmail.com', '10:15:10'),
+(21, 22, NULL, 'test', '29304508', '2024-05-08', 'test', 1, 't@gmail.com', '10:10:10'),
+(23, 21, NULL, 'ahmedahmed', '12345678', '2026-01-01', 'test', NULL, 'ghazouaniselim@gmail.com', '00:00:00'),
+(24, 23, NULL, 'selim ghazouani', '12345678', '2024-05-14', 'test', 1, 'test@gmail.com', '00:00:00'),
+(25, 23, NULL, 'wejdenemna', '12345678', '2024-05-14', 'test', NULL, 'test@gmail.com', '10:10:00'),
+(27, 37, NULL, 'Selim Ghazouani', '23835581', '2024-05-30', 'I need an urgent appointment', NULL, 'ghazouani4444@gmail.com', '20:00:00'),
+(28, 37, NULL, 'SelimUser', '23835581', '2024-05-31', 'I need an urgent appointment', NULL, 'ghazouani4444@gmail.com', '09:30:00'),
+(29, 37, NULL, 'SelimUser', '23835581', '2024-06-01', 'I need an urgent appoinment', NULL, 'ghazouani4444@gmail.com', '00:00:00'),
+(30, 23, NULL, 'selim ghazouani', '23835581', '2024-06-20', 'i need an appoinment', NULL, 'ghazouani4444@gmail.com', '09:00:00'),
+(31, 31, NULL, 'Selim Ghazouani', '23835581', '2025-01-01', 'i need an appoinment', 1, 'ghazouani4444@gmail.com', '07:00:00'),
+(32, 31, NULL, 'Selim Ghazouani', '23835581', '2024-06-12', 'i need an appoinment', 1, 'ghazouani4444@gmail.com', '00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reponse`
+--
+
+CREATE TABLE `reponse` (
+  `id` int(11) NOT NULL,
+  `reclamation_id` int(11) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `response_content` text DEFAULT NULL,
+  `response_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reponse`
+--
+
+INSERT INTO `reponse` (`id`, `reclamation_id`, `author`, `response_content`, `response_date`) VALUES
+(9, 32, 'Admin', 'Merci pour votre signalement. Notre équipe travaille à résoudre le problème de chargement de la page d\'accueil.', '2024-05-16 11:49:54'),
+(10, 33, 'Admin', 'Merci de vos commentaires. Nous prendrons en compte vos suggestions pour améliorer l\'interface utilisateur.', '2024-05-16 11:50:36'),
+(11, 39, 'Admin', 'Désolé pour le retard. Notre équipe s\'efforce de répondre rapidement à votre demande. Un membre de notre équipe vous contactera bientôt.', '2024-05-16 11:51:15'),
+(12, 37, 'Admin', 'Nous prenons au sérieux la sécurité des données. Notre équipe examine et corrige toute faille de sécurité signalée.', '2024-05-16 11:51:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reponse_evaluation`
+--
+
+CREATE TABLE `reponse_evaluation` (
+  `id` int(11) NOT NULL,
+  `reponse_id` int(11) DEFAULT NULL,
+  `reclamation_id` int(11) DEFAULT NULL,
+  `evaluation` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reponse_evaluation`
+--
+
+INSERT INTO `reponse_evaluation` (`id`, `reponse_id`, `reclamation_id`, `evaluation`) VALUES
+(1, NULL, 22, 2),
+(2, NULL, 23, 5),
+(3, NULL, 23, 1),
+(4, NULL, 27, 3),
+(5, NULL, 30, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `entity_type` varchar(10) NOT NULL,
+  `reporter_id` int(11) NOT NULL,
+  `timestamp` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `entity_id`, `entity_type`, `reporter_id`, `timestamp`) VALUES
+(33, 127, 'post', 15, '2024-05-03 21:42:36'),
+(57, 115, 'post', 15, '2024-05-04 11:54:56'),
+(59, 132, 'post', 25, '2024-05-07 09:49:50'),
+(75, 115, 'post', 2, '2024-05-15 23:05:40'),
+(76, 115, 'post', 2, '2024-05-15 23:05:40'),
+(79, 116, 'post', 2, '2024-05-15 23:09:44'),
+(80, 116, 'post', 2, '2024-05-15 23:09:44'),
+(81, 116, 'post', 3, '2024-05-15 23:09:44'),
+(83, 139, 'post', 47, '2024-05-28 01:14:03'),
+(84, 117, 'post', 47, '2024-05-28 01:18:36'),
+(85, 116, 'post', 47, '2024-06-11 21:52:30'),
+(86, 115, 'post', 47, '2024-06-11 21:54:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservationservice`
+--
+
+CREATE TABLE `reservationservice` (
+  `id` int(11) NOT NULL,
+  `idserivce_id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reservationservice`
+--
+
+INSERT INTO `reservationservice` (`id`, `idserivce_id`, `nom`, `email`) VALUES
+(18, 16, 'nidhal', 'arfaouinidhal77@gmail.com'),
+(19, 16, 'ahmed', 'bouaziza667@gmail.com'),
+(20, 26, 'ahmd', 'hamza.chenenaoui@esprit.tn'),
+(21, 17, 'SelimUser', 'ghazouani4444@gmail.com'),
+(22, 16, 'SelimUser', 'ghazouani4444@gmail.com'),
+(23, 16, 'Selim Ghazouani', 'ghazouani4444@gmail.com'),
+(24, 16, 'Selim Ghazouani', 'ghazouani4444@gmail.com'),
+(25, 16, 'SelimUser', 'ghazouani4444@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_password_request`
+--
+
+CREATE TABLE `reset_password_request` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `selector` varchar(20) NOT NULL,
+  `hashed_token` varchar(100) NOT NULL,
+  `requested_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reset_password_request`
+--
+
+INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token`, `requested_at`, `expires_at`) VALUES
+(5, 47, 'lIDPujIyWTrawmzYJgLB', 'zI6J1zpXGw52ZYD+iO/zF8wf/uwOREJP/ENXspMHNiQ=', '2024-05-27 23:54:06', '2024-05-28 00:54:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `response`
+--
+
+CREATE TABLE `response` (
+  `id` int(11) NOT NULL,
+  `reclamation_id` int(11) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `response_content` text DEFAULT NULL,
+  `response_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `date_cr` date NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `id_categorie_id` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `nom`, `description`, `date_cr`, `image`, `id_categorie_id`, `active`) VALUES
+(16, 'HospitalCare', 'HSpital care description', '2025-01-01', '6642211963c45.jpg', 3, 1),
+(17, 'GYNECOLOGY', 'GYNECOLOGY', '2025-01-01', '6645f02a82858.jpg', 1, 1),
+(18, 'NURSING', 'All hygiene and comfort care provided by the nurse and the caregiver to dependent people', '2025-01-01', '6645f00561a6d.jpg', 2333344, 1),
+(19, 'CARDIOLOGIE', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown', '2028-01-01', '6645f0c61f608.jpg', 3, 1),
+(20, 'CHILDCARE', 'CHILDCARE descrition', '2028-01-01', '6645f10cae567.jpg', 3, 1),
+(21, 'NEUROLOGIE', 'NEUROLOGIE description', '2028-01-01', '6645f1694d1c4.jpg', 3, 1),
+(22, 'DERMATOLOGIE', 'DERMATOLOGIE description', '2026-01-01', '6645f19807bed.jpg', 3, 1),
+(23, 'PATHOLOGIE', 'PATHOLOGIE description', '2027-01-01', '6645f1fc7f1e7.jpg', 4, 1),
+(24, 'CHIRURGIE', 'CHIRURGIE description', '2029-01-01', '6645f236697ab.jpg', 2333342, 1),
+(25, 'VACCINATION', 'VACCINATION description', '2029-01-01', '6645f27a96706.jpg', 2333344, 1),
+(26, 'validation', 'vaaa', '2028-01-01', '6645fb48765eb.jpg', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sponsor`
+--
+
+CREATE TABLE `sponsor` (
+  `id` int(11) NOT NULL,
+  `nom_sponsor` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `email_sponsor` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sponsor`
+--
+
+INSERT INTO `sponsor` (`id`, `nom_sponsor`, `description`, `email_sponsor`) VALUES
+(1, 'BioMed', 'dés 2011', 'Biomed@gmail.com'),
+(2, 'MANOJ', 'Sponsoring médical', 'Manoj@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(180) NOT NULL,
+  `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`roles`)),
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_event`
+--
+ALTER TABLE `category_event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_9474526C9514AA5C` (`id_post_id`);
+
+--
+-- Indexes for table `doctrine_migration_versions`
+--
+ALTER TABLE `doctrine_migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `evenement`
+--
+ALTER TABLE `evenement`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_B26681E12F7FB51` (`sponsor_id`),
+  ADD KEY `IDX_B26681E12469DE2` (`category_id`);
+
+--
+-- Indexes for table `likes_post`
+--
+ALTER TABLE `likes_post`
+  ADD PRIMARY KEY (`id_like`),
+  ADD KEY `id_post` (`id_post`);
+
+--
+-- Indexes for table `medecin`
+--
+ALTER TABLE `medecin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_1BDA53C6E7927C74` (`email`);
+
+--
+-- Indexes for table `messenger_messages`
+--
+ALTER TABLE `messenger_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
+  ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
+  ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
+
+--
+-- Indexes for table `participant`
+--
+ALTER TABLE `participant`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_D79F6B11FD02F13` (`evenement_id`),
+  ADD KEY `IDX_D79F6B114F31A84` (`medecin_id`);
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_creator` (`id_creator`),
+  ADD KEY `id_creator_2` (`id_creator`);
+
+--
+-- Indexes for table `rapport`
+--
+ALTER TABLE `rapport`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_BE34A09C3345E0A3` (`rendezvous_id`);
+
+--
+-- Indexes for table `reclamation`
+--
+ALTER TABLE `reclamation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_C09A9BA81DFBCC46` (`rapport_id`),
+  ADD KEY `IDX_C09A9BA84F31A84` (`medecin_id`);
+
+--
+-- Indexes for table `reponse`
+--
+ALTER TABLE `reponse`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reclamation_id` (`reclamation_id`);
+
+--
+-- Indexes for table `reponse_evaluation`
+--
+ALTER TABLE `reponse_evaluation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reponse_id` (`reponse_id`),
+  ADD KEY `reclamation_id` (`reclamation_id`);
+
+--
+-- Indexes for table `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reporter_id` (`reporter_id`),
+  ADD KEY `reports_ibfk_1` (`entity_id`);
+
+--
+-- Indexes for table `reservationservice`
+--
+ALTER TABLE `reservationservice`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_505F34CA43E3E8B5` (`idserivce_id`) USING BTREE;
+
+--
+-- Indexes for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_7CE748AA76ED395` (`user_id`);
+
+--
+-- Indexes for table `response`
+--
+ALTER TABLE `response`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reclamation_id` (`reclamation_id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_E19D9AD29F34925F` (`id_categorie_id`);
+
+--
+-- Indexes for table `sponsor`
+--
+ALTER TABLE `sponsor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2333345;
+
+--
+-- AUTO_INCREMENT for table `category_event`
+--
+ALTER TABLE `category_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT for table `evenement`
+--
+ALTER TABLE `evenement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT for table `likes_post`
+--
+ALTER TABLE `likes_post`
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT for table `medecin`
+--
+ALTER TABLE `medecin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `messenger_messages`
+--
+ALTER TABLE `messenger_messages`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `participant`
+--
+ALTER TABLE `participant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+
+--
+-- AUTO_INCREMENT for table `rapport`
+--
+ALTER TABLE `rapport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `reclamation`
+--
+ALTER TABLE `reclamation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `reponse`
+--
+ALTER TABLE `reponse`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `reponse_evaluation`
+--
+ALTER TABLE `reponse_evaluation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT for table `reservationservice`
+--
+ALTER TABLE `reservationservice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `response`
+--
+ALTER TABLE `response`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `sponsor`
+--
+ALTER TABLE `sponsor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `FK_9474526C9514AA5C` FOREIGN KEY (`id_post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `evenement`
+--
+ALTER TABLE `evenement`
+  ADD CONSTRAINT `FK_B26681E12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category_event` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_B26681E12F7FB51` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `likes_post`
+--
+ALTER TABLE `likes_post`
+  ADD CONSTRAINT `likes_post_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `post` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `rapport`
+--
+ALTER TABLE `rapport`
+  ADD CONSTRAINT `FK_BE34A09C3345E0A3` FOREIGN KEY (`rendezvous_id`) REFERENCES `rendezvous` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `rendezvous`
+--
+ALTER TABLE `rendezvous`
+  ADD CONSTRAINT `FK_C09A9BA81DFBCC46` FOREIGN KEY (`rapport_id`) REFERENCES `rapport` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_C09A9BA84F31A84` FOREIGN KEY (`medecin_id`) REFERENCES `medecin` (`id`);
+
+--
+-- Constraints for table `reponse`
+--
+ALTER TABLE `reponse`
+  ADD CONSTRAINT `reponse_ibfk_1` FOREIGN KEY (`reclamation_id`) REFERENCES `reclamation` (`id`);
+
+--
+-- Constraints for table `reponse_evaluation`
+--
+ALTER TABLE `reponse_evaluation`
+  ADD CONSTRAINT `reponse_evaluation_ibfk_1` FOREIGN KEY (`reponse_id`) REFERENCES `response` (`id`),
+  ADD CONSTRAINT `reponse_evaluation_ibfk_2` FOREIGN KEY (`reclamation_id`) REFERENCES `reclamation` (`id`);
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reservationservice`
+--
+ALTER TABLE `reservationservice`
+  ADD CONSTRAINT `FK_505F34CA43E3E8B5` FOREIGN KEY (`idserivce_id`) REFERENCES `service` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reset_password_request`
+--
+ALTER TABLE `reset_password_request`
+  ADD CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `medecin` (`id`);
+
+--
+-- Constraints for table `response`
+--
+ALTER TABLE `response`
+  ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`reclamation_id`) REFERENCES `reclamation` (`id`);
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `FK_E19D9AD29F34925F` FOREIGN KEY (`id_categorie_id`) REFERENCES `category` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,95 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Connexion!{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <form method="post" class="login-form shadow-lg p-4 rounded">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="alert alert-info mb-3">
+                Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 text-center font-weight-bold">CONNEXION</h1>
+
+        <div class="form-group mb-3">
+            <label for="inputEmail" class="form-label">Adresse Email</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="inputPassword" class="form-label">Mot de passe</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+        </div>
+
+        <div class="form-footer">
+            <p class="form-footer-text">Vous n'avez pas de compte ? <a href="{{ path('register') }}" class="form-footer-link">Inscription</a></p>
+        </div>
+
+     <!-- <div>
+            <p>
+                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+            </p>
+        </div> -->  
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button class="btn btn-lg btn-primary w-100" type="submit">Se connecter</button>
+    </form>
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 5% auto;
+    }
+    .login-form {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
+    .input-group-text {
+        background-color: #e9ecef;
+    }
+    /* Footer Section */
+    .form-footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .form-footer-text {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .form-footer-link {
+        color: #28a745;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .form-footer-link:hover {
+        color: #218838;
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

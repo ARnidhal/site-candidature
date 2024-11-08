@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Statistiques des Candidatures</h1>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6 chart-wrapper">
+            <h3 class="text-center">Distribution des Utilisateurs par Années d'Expérience</h3>
+            <div class="chart-card">
+                <canvas id="experienceChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 chart-wrapper">
+            <h3 class="text-center">Distribution des Utilisateurs par Spécialité</h3>
+            <div class="chart-card">
+                <canvas id="specialityChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4ff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 50px auto; /* Center the container */
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative; /* for potential positioning of elements */
+        overflow: hidden; /* to hide any overflow elements */
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+        color: #444;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+
+    .chart-card {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin: 10px 0;
+        position: relative;
+        overflow: hidden; /* Ensures the shadow and effects are contained */
+    }
+
+    .chart-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .chart-card:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 123, 255, 0.1);
+        opacity: 0.5;
+        transition: opacity 0.3s;
+        z-index: 0; /* Behind the canvas */
+    }
+
+    .chart-card:hover:before {
+        opacity: 0.2;
+    }
+
+    canvas {
+        margin: 20px auto;
+        display: block;
+        position: relative; /* Keeps the canvas positioned correctly */
+        z-index: 1; /* Above the pseudo-element */
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding: 10px;
+        }
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const experienceCounts = {{ experienceLabels|json_encode|raw }};
+    const userCounts = {{ userCounts|json_encode|raw }};
+    const specialityCounts = {{ specialityLabels|json_encode|raw }};
+    const specialityUserCounts = {{ specialityUserCounts|json_encode|raw }};
+
+    // Chart for years of experience (Doughnut chart)
+    const ctxExperience = document.getElementById('experienceChart').getContext('2d');
+    const experienceChart = new Chart(ctxExperience, {
+        type: 'doughnut',
+        data: {
+            labels: experienceCounts,
+            datasets: [{
+                label: 'Utilisateurs par Années d\'Expérience',
+                data: userCounts,
+                backgroundColor: [
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + ' utilisateurs';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart for specialities (Pie chart)
+    const ctxSpeciality = document.getElementById('specialityChart').getContext('2d');
+    const specialityChart = new Chart(ctxSpeciality, {
+        type: 'pie',
+        data: {
+            labels: specialityCounts,
+            datasets: [{
+                label: 'Utilisateurs par Spécialité',
+                data: specialityUserCounts,
+                backgroundColor: [
+                    'rgba(255, 205, 86, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + ' utilisateurs';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

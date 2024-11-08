@@ -1,0 +1,218 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<style>
+    /* Global Reset */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7f6;
+    }
+
+    /* Form Container */
+    .form-container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 60px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .form-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+        position: relative;
+    }
+
+    .form-container h2:after {
+        content: '';
+        width: 50px;
+        height: 4px;
+        background-color: #28a745;
+        display: block;
+        margin: 10px auto 0;
+    }
+
+    /* Form Fields */
+    .form-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-container input,
+    .form-container textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+    }
+
+    .form-container input:invalid {
+        border-color: #dc3545;
+    }
+
+    .form-container input:valid {
+        border-color: #28a745;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 15px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container button:hover {
+        background-color: #218838;
+        box-shadow: 0 5px 15px rgba(33, 136, 56, 0.2);
+    }
+
+    .form-container button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Error and Success Messages */
+    .message {
+        display: none;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    /* Form Transitions */
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .form-container {
+            width: 90%;
+            padding: 30px;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+        }
+    }
+
+    /* Footer Section */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-footer-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.form-footer-link {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.form-footer-link:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+
+</style>
+
+<!-- Contact Form Section -->
+<div class="form-container fade-in">
+    <h2>Inscription</h2>
+   
+    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+        <label for="name">Nom</label>
+        {{ form_widget(form.name, { attr: { placeholder: 'Entrez votre nom complet' } }) }}
+        {{ form_errors(form.name) }}
+    
+        <label for="email">Adresse Email</label>
+        {{ form_widget(form.email, { attr: { placeholder: 'Entrez votre adresse email' } }) }}
+        {{ form_errors(form.email) }}
+
+        <label for="mdp">Mot de passe</label>
+        {{ form_widget(form.password.first, { attr: { placeholder: 'Entrez votre mot de passe' } }) }}
+        {{ form_errors(form.password.first) }}
+    
+        <label for="mdp">Confirmer votre mot de passe</label>
+        {{ form_widget(form.password.second, { attr: { placeholder: 'Confirmez votre mot de passe' } }) }}
+        {{ form_errors(form.password.second) }}
+
+        <button type="submit" id="submitBtn">S'inscrire</button>
+
+        <div class="message success">Votre inscription a été envoyée avec succès !</div>
+        <div class="message error">Une erreur est survenue. Veuillez réessayer.</div>
+        
+    {{ form_end(form) }}
+
+    <div class="form-footer">
+        <p class="form-footer-text">Vous avez déjà un compte ? <a href="{{ path('app_login') }}" class="form-footer-link">Se connecter</a></p>
+    </div>
+</div>
+
+{% endblock %}
